@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ApiWebUrl } from '../utils';
+import { ApiWebUrl2 } from '../utils';
 
 class Carrito extends Component {
     constructor(props){
@@ -15,11 +15,11 @@ class Carrito extends Component {
         }
     }
 
-    obtenerProductoSolo(idproducto){
-        const rutaServicio =  ApiWebUrl + "productosolo.php";
+    obtenerProductoSolo(idEspecialidad){
+        const rutaServicio =  ApiWebUrl2 + "database_doctores.php";
 
         var formData = new FormData();
-        formData.append("idproducto", idproducto)
+        formData.append("idEspecialidad", idEspecialidad)
         fetch(rutaServicio, {
             method: 'POST',
             body: formData
@@ -35,9 +35,9 @@ class Carrito extends Component {
         ) 
     }
 
-    agregarProductoCarrito(producto){
+    agregarProductoCarrito(especialidad){
         var itemCarrito = {
-            productoCarrito: producto,
+            productoCarrito: especialidad,
             cantidad: 1
         }
         let carrito = [];
@@ -50,7 +50,7 @@ class Carrito extends Component {
             carrito = JSON.parse(localStorage.getItem("carrito"));
             let index = -1;
             for(var i=0; i<carrito.length; i++){
-                if(carrito[i].productoCarrito.idproducto === producto.idproducto){
+                if(carrito[i].productoCarrito.idEspecialidad === especialidad.idEspecialidad){
                     index = i;
                     break;
                 }
@@ -76,21 +76,21 @@ class Carrito extends Component {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Cod</th>
-                        <th>Nombres</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>SubTotal</th>
+                        <th>Id</th>
+                        <th>doctor</th>
+                        <th>sede</th>
+                        <th>telefono</th>
+                        <th>especialidad</th>
                     </tr>
                 </thead>
                 <tbody>
                     {datosCarrito.map(itemCarrito =>
-                        <tr key={itemCarrito.productoCarrito.idproducto}>
-                            <td>{itemCarrito.productoCarrito.idproducto}</td>        
-                            <td>{itemCarrito.productoCarrito.nombre}</td>        
-                            <td>{itemCarrito.productoCarrito.precio}</td>        
-                            <td>{itemCarrito.cantidad}</td>        
-                            <td>{itemCarrito.productoCarrito.precio * itemCarrito.cantidad}</td>        
+                        <tr key={itemCarrito.productoCarrito.id}>
+                            <td>{itemCarrito.productoCarrito.id}</td>        
+                            <td>{itemCarrito.productoCarrito.doctor}</td>        
+                            <td>{itemCarrito.productoCarrito.sede}</td>        
+                            <td>{itemCarrito.productoCarrito.telefono}</td>        
+                            <td>{itemCarrito.productoCarrito.especialidad}</td>        
                         </tr>
                         )}
                 </tbody>

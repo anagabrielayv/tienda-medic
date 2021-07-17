@@ -1,4 +1,5 @@
 export const ApiWebUrl = "https://zisoftacademy.com/apiclases/";
+export const ApiWebUrl2 = "https://servicioweb-2021.000webhostapp.com/";
 export const ApiWebImgUrl = "https://zisoftacademy.com/apiclases/img/";
 
 
